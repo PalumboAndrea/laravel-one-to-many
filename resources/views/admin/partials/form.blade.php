@@ -11,7 +11,6 @@
             <select class="form-control" id="post_category" name="type_id" >
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}"
-                        style="color: {{ $type->color }}"
                         {{ old('type_id', $post->type_id) ==  $type->id ? 'selected' : '' }}>
                         <span >
                             {{ $type->name }}
