@@ -38,6 +38,7 @@ return array(
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Type' => $baseDir . '/app/Models/Type.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\UserDetail' => $baseDir . '/app/Models/UserDetail.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

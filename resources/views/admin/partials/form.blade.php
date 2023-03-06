@@ -38,6 +38,6 @@
             <label for="formFile" class="form-label">Carica una foto</label>
             <input class="form-control" type="file" id="formFile" name="image_path" value="{{ old('image_path') ?? $post->image_path }}">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{ $route == 'admin.posts.update' ? 'Modifica post' : 'Crea un nuovo post'  }}</button>
     </form>
 </div>
