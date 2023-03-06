@@ -5,6 +5,22 @@
         <h5 class="mb-3">
         Author: <span class="fw-semibold">{{ Auth::user()->name }} </span>
         </h5>
+
+        <div class="mb-3">
+            <label class="form-label">Tipo</label>
+            <select class="form-control" id="post_category" name="type_id" >
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}"
+                        style="color: {{ $type->color }}"
+                        {{ old('type_id', $post->type_id) ==  $type->id ? 'selected' : '' }}>
+                        <span >
+                            {{ $type->name }}
+                        </span>
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        
         <div class="mb-3">
             <label class="form-label">Titolo</label>
             <input type="text" class="form-control" placeholder="add title" name="title" value="{{ old('title') ?? $post->title  }}">

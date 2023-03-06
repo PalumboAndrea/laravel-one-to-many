@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -17,7 +18,8 @@ class PostController extends Controller
         'title' => ['required', 'unique:posts' ],
         'post_date' => 'required',
         'content' => 'required',
-        'image_path' => 'required|image'
+        'image_path' => 'required|image',
+        'type_id' => 'required|exists:types,id',
     ];
     /**
      * Display a listing of the resource.
@@ -37,7 +39,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create', [ 'post' => new Post() ]);
+        return view('admin.posts.create', [ 'post' => new Post(), 'types' => Type::all() ]);
+
     }
 
     /** 
@@ -57,7 +60,7 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->save();
 
-        return redirect()->route('admin.posts.index')->with('msg', "Post $newPost->title has been created succesfully");
+        return redirect()->route('admin.posts.show', $newPost)->with('msg', "Post $newPost->title has been created succesfully");
     }
 
     /**
@@ -79,7 +82,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', [ 'post' => $post ]);
+        return view('admin.posts.edit', [ 'post' => $post, 'types' => Type::all()]);
     }
 
     /**
@@ -94,12 +97,14 @@ class PostController extends Controller
         $data = $request->validate([
             'title' => ['required', Rule::unique('posts')->ignore($post->id)],
             'post_date' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'type_id' => 'required|exists:types,id',
         ],
         [
             'title' => 'Inserire un titolo',
             'post_date' => 'Inserire una data',
-            'content' => 'Inserire un testo'
+            'content' => 'Inserire un testo',
+            'type_id' => 'Inserire un tipo',
         ]);
         $post->update($data);
         return redirect()->route('admin.posts.show', compact('post'));

@@ -7,6 +7,7 @@
         <thead>
             <tr>
             <th scope="col">#id</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th scope="col">Content</th>
@@ -20,6 +21,7 @@
             @foreach ($posts as $post)
             <tr>
                 <th scope="row" class="align-middle">{{ $post->id }}</th>
+                <td class="align-middle">{{ $post->type->name ?? 'No type' }}</td>
                 <td class="align-middle">{{ $post->title }}</td>
                 <td class="align-middle">{{ $post->author }}</td>
                 <td class="align-middle">{{ $post->content }}</td>

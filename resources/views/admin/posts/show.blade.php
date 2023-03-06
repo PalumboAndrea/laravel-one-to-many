@@ -13,11 +13,13 @@
                 @endif
                     alt="{{ $post->title }} image" class="img-fluid">
             </div>
+            <p class="card-text text-center"> {{ $post->type->name }} </p>
             <p class="card-text text-center"> {{ $post->author }} </p>
-            <p class="card-text"> {{ $post->content }} </p>
+            <p class="card-text text-center"> {{ $post->content }} </p>
             <p class="card-text text-center"> {{ $post->post_date }} </p>
             <p class="card-text"></p>
         </div>
     </div>
 </div>
 @endsection
+ 
